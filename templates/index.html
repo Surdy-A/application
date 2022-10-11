@@ -92,6 +92,39 @@
     <section id="details" class="details">
       <div class="container">
 
+         <div class="row content">
+          <div class="col-md-4" data-aos="fade-right">
+            <img src="{% static 'assets/img/details-1.png' %}" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-8 pt-4 admission" data-aos="fade-up">
+            <h3>Admission ! Admission !!  Admission !!!</h3>
+            <p class="admission" style="text-align:justify; font-size:18px; line-height:28px">
+              The Online registration for Diploma Programme into the Department of Local Government and Development 
+              Studies is in progress. <br /><br />
+              The programme started in 1979 as Local Government training programme under Department of  Public Administration. 
+              It became a full fledged Department of its own in  April, 1984. <br />
+              The Diploma programme of the Department of Local Government Studies now the Department of Local Government and 
+              Development Studies, Faculty of Administration, Obafemi Awolowo University, Ile-Ife serves as a training programme 
+              funded by the Federal Government of Nigeria. The programme was (and still is being) run in three regional centers, 
+              namely, the Ahmadu Bello University, Zaria (ABU) for the North, the University of Nigeria, Nsukka (UNN) for the East, 
+              and the Obafemi Awolowo University (OAU) for the South West. The designed objective at early stage was for the programme 
+              to offer support, in the form of training and re-training facilities, to junior as well as mid-level local government 
+              staff to improve their performance on the job. This is to justify the efforts of the government at federal and state levels 
+              that had seen new vigour since 1976, to make Local Government (LG) a visible and effective third tier of government in Nigeria’s
+              federal practice. 
+              <br /><br />
+              Over the years, the Diploma programme has benefited the general public and fresh secondary school graduates to pursue 
+              university education. One of such benefits include the successful Diploma graduates with Cummulative Grade Point Average
+              (CGPA) of 3.5 and above are qualified to apply for Direct Entry (DE) admission into 200 level B.Sc. Degree programmes in 
+              the following Departments at Obafemi Awolowo University, namely: Local Government and Development Studies, Public Administration, 
+              Political Science, Entrepreneurship Studies. However, these opportunities are not limited to Obafemi Awolowo University, Ile-Ife, Nigeria. 
+              <br /><br/>
+              Head of Department <br />
+              Department of Local Government and Development Studies.
+            </p>
+          </div>
+        </div>
+
         <div class="row content">
           <div class="col-md-4" data-aos="fade-right">
             <img src="{% static 'assets/img/details-1.png' %}" class="img-fluid" alt="">
@@ -100,12 +133,12 @@
             <h3>How to apply for Local Government Diploma Course.</h3>
             <p class="fst-italic">
              Follow the steps below to apply for Local Government Diploma Course:
-            </p>
-            <ul>
+              <ul>
               <li><i class="bi bi-check"></i>Pay for the application form.</li>
               <li><i class="bi bi-check"></i>Proceed to fill the appliction form correctly.</li>
               <li><i class="bi bi-check"></i>Print out application form after filling.</li>
             </ul>
+            </p>
           </div>
         </div>
       </div>
@@ -125,14 +158,136 @@
             <div class="col-lg-12" id="application">
              <form action="/" method="post" data-aos="fade-up" enctype="multipart/form-data">
                   {% csrf_token %}
-                <!-- {{ form.non_field_errors }}
+                 {{ form.non_field_errors }}
               <div class="form-group">
                   {{ form.errors }}
-                  <label for="{{ form.commence.id_for_label }}">Commence<span class="required">*</span></label>
+                  <label for="{{ form.commence.id_for_label }}">Commencing from<span class="required">*</span></label>
                   {{ form.commence }}
-              </div> -->
-              {{form}}
-                  <div class="text-center"><button type="submit" value="Submit"  class="btn btn-outline-primary">Submit</button></div>
+
+              {% if form.commence %}
+              <h3 class="text-center mt-3">SECTION A (to be completed by the Applicant)</h3>
+              {% endif %} 
+
+               {{ form.errors }}
+                  <label for="{{ form.firstName.id_for_label }}">First Name<span class="required">*</span></label>
+              {{ form.firstName }}
+              {{ form.errors }}
+                  <label for="{{ form.surname.id_for_label }}">Surname<span class="required">*</span></label>
+              {{ form.surname }}
+              {{ form.errors }}
+                  <label for="{{ form.othernames.id_for_label }}">Other Names<span class="required">*</span></label>
+              {{ form.othernames }}
+              {{ form.errors }}
+                  <label for="{{ form.phone.id_for_label }}">Phone Number<span class="required">*</span></label>
+              {{ form.phone }}
+              {{ form.errors }}
+                  <label for="{{ form.state.id_for_label }}">State of Origin<span class="required">*</span></label>
+              {{ form.state }}
+              {{ form.errors }}
+                  <label for="{{ form.nationality.id_for_label }}">Nationality<span class="required">*</span></label>
+              {{ form.nationality }}
+              {{ form.errors }}
+                  <label for="{{ form.placeOfBirth.id_for_label }}">Place of Birth<span class="required">*</span></label>
+              {{ form.placeOfBirth }}
+              {{ form.errors }}
+                  <label for="{{ form.dob.id_for_label }}">Date of Birth<span class="required">*</span></label>
+              {{ form.dob }}
+              {{ form.errors }}
+                  <label for="{{ form.sex.id_for_label }}">Sex<span class="required">*</span></label>
+              {{ form.sex }}
+               {{ form.errors }}
+                  <label for="{{ form.maritalStatus.id_for_label }}">Marital Status<span class="required">*</span></label>
+              {{ form.maritalStatus }}
+              {{ form.errors }}
+                  <label for="{{ form.noOfChildren.id_for_label }}">No of Children</label>
+              {{ form.noOfChildren }}
+              {{ form.errors }}
+                  <label for="{{ form.religion.id_for_label }}">Religion<span class="required">*</span></label>
+              {{ form.religion }}
+              {{ form.errors }}
+                  <label for="{{ form.email.id_for_label }}">Mail Address for Reply<span class="required">*</span></label>
+              {{ form.email }}
+              {{ form.errors }}
+                  <label for="{{ form.address.id_for_label }}">Permanent Home Address<span class="required">*</span></label>
+              {{ form.address }}
+              <h3 class="text-center mt-3">Next of Kin</h3>
+               {{ form.errors }}
+                  <label for="{{ form.name.id_for_label }}">Name<span class="required">*</span></label>
+              {{ form.name }}
+              {{ form.errors }}
+                  <label for="{{ form.address.id_for_label }}">Permanent Home Address<span class="required">*</span></label>
+              {{ form.address }}
+              {{ form.errors }}
+                  <label for="{{ form.nokphone.id_for_label }}">Phone Number<span class="required">*</span></label>
+              {{ form.nokphone }}
+              {{ form.errors }}
+                  <label for="{{ form.naddress.id_for_label }}">Address<span class="required">*</span></label>
+              {{ form.naddress }}
+              {{ form.errors }}
+                  <label for="{{ form.relationship.id_for_label }}">Relationship<span class="required">*</span></label>
+              {{ form.relationship }}
+              <h3 class="text-center mt-3">Educational record(from secondary school attended)Attach certified 
+                photocopies of certificate</h3>
+              {{ form.errors }}
+                  <label for="{{ form.institution1.id_for_label }}">Name of Institution<span class="required">*</span></label>
+              {{ form.institution1 }}
+              {{ form.errors }}
+                  <label for="{{ form.placeAndCountry.id_for_label }}">Place And Country<span class="required">*</span></label>
+              {{ form.placeAndCountry }}
+               {{ form.errors }}
+                  <label for="{{ form.datefrom.id_for_label }}">Date( from.............to............)<span class="required">*</span></label>
+              {{ form.datefrom }}
+               {{ form.errors }}
+                  <label for="{{ form.certificate1.id_for_label }}">Certificate Obtained on leaving<span class="required">*</span></label>
+              {{ form.certificate1 }}
+              <h3 class="text-center mt-3">Other Certificates</h3>
+              {{ form.errors }}
+                <label for="{{ form.institution2.id_for_label }}">Institution</label>
+              {{ form.institution2 }}
+              {{ form.errors }}
+                  <label for="{{ form.certificate2.id_for_label }}"> Other Certificate Obtained</label>
+              {{ form.certificate2 }}
+              <h3 class="text-center mt-3">Employer Details</h3>
+              {{ form.errors }}
+                  <label for="{{ form.employername.id_for_label }}">Name<span class="required">*</span></label>
+              {{ form.employername }}
+              {{ form.errors }}
+                  <label for="{{ form.employeraddress.id_for_label }}">Address<span class="required">*</span></label>
+              {{ form.employeraddress }}
+              {{ form.errors }}
+                  <label for="{{ form.appointmentdate.id_for_label }}">Date of Appointment <span class="required">*</span></label>
+              {{ form.appointmentdate }}
+              {{ form.errors }}
+                  <label for="{{ form.salary.id_for_label }}">Present Salary</label>
+              {{ form.salary }}
+              {{ form.errors }}
+                  <label for="{{ form.post.id_for_label }}">Title of post currently held</label>
+              {{ form.post }}
+              <h3 class="text-center mt-3">Details of previous employment (s) and post(s) held</h3>
+               {{ form.errors }}
+                  <label for="{{ form.post2.id_for_label }}">Title of Post</label>
+              {{ form.post2 }}
+              {{ form.errors }}
+                  <label for="{{ form.employername2.id_for_label }}">Name of Employer</label>
+              {{ form.employername2 }}
+              {{ form.errors }}
+                  <label for="{{ form.employmentName.id_for_label }}">Name of Employment</label>
+              {{ form.employmentName }}
+              {{ form.errors }}
+                  <label for="{{ form.salary2.id_for_label }}">Salary</label>
+              {{ form.salary2 }}
+              <h3 class="text-center mt-3">(The University Accepts no obligation to provide accommodation 
+                for students but will be willing to render advisory services to such students)</h3>
+              <h3 class="text-center mt-3">I hereby undertake to observe the rules and regulations of the 
+                university and to subject myself to discipline during my course of study.</h3>
+              {{ form.errors }}
+                  <label for="{{ form.submitdate.id_for_label }}">Date<span class="required">*</span></label>
+              {{ form.submitdate }}
+              {{ form.errors }}
+                  <label for="{{ form.Signature.id_for_label }}">Signature<span class="required">*</span></label>
+              {{ form.Signature }}
+              </div> 
+              <div class="text-center"><button type="submit" value="Submit"  class="btn btn-outline-primary">Submit</button></div>
               </form>
              
         

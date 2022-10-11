@@ -1304,3 +1304,9 @@ section {
     opacity: 0;
   }
 }
+.details .content p{
+  font-size: 20px !important;
+  line-height: 5px;
+  text-align: justify !important;
+  color:black !important;
+}
