@@ -1,14 +1,20 @@
+from email.policy import default
 from pyexpat import model
 from re import M
 from django.db import models
 from django.utils.text import slugify
 from django.urls import reverse
+import datetime
 
 
 class Application(models.Model):
     GENDER_CHOICES = (
         ('M', 'Male'),
         ('F', 'Female'),
+    )
+    SESSION_CHOICES = (
+        ('2022/2023', '2022/2023'),
+        ('2023/2024', '2023/2024'),
     )
     commence = models.DateField()
     firstName = models.CharField(max_length=200, default='')
@@ -20,6 +26,7 @@ class Application(models.Model):
     dob = models.DateField()
     placeOfBirth = models.CharField(max_length=200)
     sex = models.CharField(max_length=200, choices=GENDER_CHOICES)
+    session = models.CharField(max_length=200, choices=SESSION_CHOICES, default='2022/2023')
     maritalStatus = models.CharField(max_length=200)
     noOfChildren = models.PositiveBigIntegerField(blank=True)
     religion = models.CharField(max_length=200)
@@ -47,17 +54,26 @@ class Application(models.Model):
     salary2 = models.IntegerField()
     submitdate = models.DateField()
     Signature = models.FileField()
-
+    registration_number = models.CharField(max_length=250, null=True, blank=True)
     class Meta:
         verbose_name = 'Application'
         verbose_name_plural = 'Applications'
 
     def __str__(self):
-        return self.firstName
+        return f'{self.firstName} Application'
+
+    
+    def get_absolute_url(self):
+            return reverse('application', args=[self.id])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.firstName)
+        today = datetime.date.today()
+        year = today.strftime("%Y")
+        if not self.registration_number:
+            number = ("LocGov", year, str(self.id))
+            self.registration_number = '/'.join(number)
+            print("reg ", self.registration_number)
         super().save(*args, **kwargs)
 
-    def get_absolute_url(self):
-        return reverse('application', args=[self.slug])
+   
