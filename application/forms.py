@@ -5,7 +5,6 @@ from django import forms
 class DateInput(forms.DateInput):
     input_type = 'date'
 
-
 class ApplicationForm(forms.ModelForm):
 
     class Meta:
@@ -46,3 +45,7 @@ class ApplicationForm(forms.ModelForm):
         super(ApplicationForm, self).__init__(*args, **kwargs)
         for field in self.fields:
             self.fields[field].widget.attrs['class'] = 'form-control my-2'
+
+
+class PrintForm(forms.Form):
+    registration_number = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
